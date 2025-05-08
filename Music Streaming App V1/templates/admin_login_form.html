@@ -1,0 +1,27 @@
+{% extends 'base.html'  %}
+
+
+{%  block title %}Adminstrator Login form {% endblock %}
+
+{% block body %}
+
+<form action="/admin_login" method="POST">
+    <hr>
+    <h1>ADMIN LOGIN FORM</h1>
+    <hr>
+    <div align="center">
+        <label for="user">Username:</label>
+        <input type="text"  id="user" name="user">
+    </div>
+    
+    <div align="center">
+        <label for="pass">password:</label>
+        <input type="password"  id="pass" name="pass">
+    </div>
+    <div align="center">
+        <input type="submit" value="Admin Login">
+    </div>
+    <hr>
+</form>
+{% endblock %}
+

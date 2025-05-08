@@ -1,0 +1,52 @@
+{% extends 'base.html'  %}
+
+
+{%  block title %}ALBUM PAGE{% endblock %}
+
+{% block body %}
+<style>
+    main{
+        align-items: center;
+        align-content: center;
+        margin: 50px ;
+        display: inline-block;   
+    }
+    li{
+        display: inline-block;
+    }
+</style>
+
+<div> <button type="button" class="btn btn-dark" onclick="location.href='/album'">BACK</button></div>
+<main>
+    
+    
+    {% for s in song %}
+    <li>
+    <div class="card" style="width: 25rem;" style="align-items: center;align-content: center;">
+        <img class="card-img-top" src="/static/audios/{{s.pfile}}" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">{{s.song_name}}</h5>
+          <p class="card-text">{{s.lyrics}}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">{{s.genre}}</li>
+          <li class="list-group-item">{{s.duration}}</li>
+        <li class="list-group-item">{{album.artist}}</li>
+        </ul>
+        <div class="card-body">
+            <audio controls>
+                <source src="{{ url_for('static', filename='audios/' + s.filename) }}" type="audio/mpeg">
+                Your browser does not support the audio tag.
+            </audio>
+        </div>
+      </div>
+    </li>
+    {% endfor %}
+   
+
+      
+      
+    </main>
+    
+    
+{% endblock %}

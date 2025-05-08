@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>ALBUMS</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  
+
+  <style>
+    /* Remove the navbar's default rounded borders and increase the bottom margin */ 
+    .navbar {
+      margin-bottom: 50px;
+      border-radius: 0;
+      position: sticky;
+    }
+    
+    /* Remove the jumbotron's default bottom margin */ 
+     .jumbotron {
+      margin-bottom: 0;
+    }
+   
+    /* Add a gray background color and some padding to the footer */
+    footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+    }
+    a{
+        cursor:pointer;
+    }
+  </style>
+</head>
+<body>
+
+
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="/play">BREATH IT</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Album</a></li>
+        <li><a href="/playlist">Playlist</a></li>
+        <li><a href="/user.details">Profile</a></li>
+        <!-- <li> 
+        <form class="form-inline">
+            <input type="email" class="form-control" size="50" placeholder="search album">
+            <button type="button" class="btn btn-danger">search</button>
+        </form></li> -->
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+        <li><a href="/Logout"> LOG OUT</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+
+<div class="container">    
+
+  <div class="row">
+    {% for item in album %}
+    <a href="/album/{{item.id}}"><div class="col-sm-4"> 
+        <div class="panel panel-success">
+          <div class="panel-heading">{{item.album_name}}</div>
+          <div class="panel-body"><img src="/static/audios/{{item.pfile}}" class="img-responsive" style="width:100%;height: 300px;" alt="Image"></div>
+          <div class="panel-footer">Click here to listen to MUSIC</div>
+        </div>
+    </a>
+  </div>
+  {% endfor %}
+    
+    
+  </div>
+  {% if creator_exist %}
+  <button type="button" class="btn btn-success" onclick="location.href='/album/edit'">Create Album</button>
+  <button type="button" class="btn btn-danger" onclick="location.href='/album/delete'">EDIT/DELETE Album</button>
+  {% endif %}
+</div><br><br>
+
+
+
+</body>
+</html>

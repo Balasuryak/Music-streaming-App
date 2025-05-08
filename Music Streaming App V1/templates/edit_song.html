@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>EDIT SONG</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>                        
+            </button>
+            <a class="navbar-brand" href="/play">BREATH IT</a>
+          </div>
+          <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="#">Song page</a></li>
+              <li><a href="/playlist">Playlist</a></li>
+              <li><a href="/album">Albums</a></li>
+              <li><a href="/user.details">Profile</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> LOG OUT</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+        
+
+<div class="container">
+  <h2>Song Uploaded</h2>
+  <p>Edit songs</p>            
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Song name</th>
+        <th>Duration</th>
+        <th>Lyrics</th>
+        <th>Genre</th>
+        <th>album</th>
+        <th>Edit</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for item in songs %}
+      <tr>
+        <td>{{item.song_name}}</td>
+        <td>{{item.duration}}</td>
+        <td>{{item.lyrics}}</td>
+        <td>{{item.genre}}</td>
+        <td>{{item.album}}</td>
+        <td><button type="button" class="btn btn-info" onclick="location.href='/song/edit/{{item.id}}'">EDIT SONG</button><hr>
+        <form action="/song/delete/{{item.id}}" method="POST"><button type="submit" class="btn btn-danger" >DELETE SONG</button></form></td>
+      </tr>
+    {% endfor%}
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>

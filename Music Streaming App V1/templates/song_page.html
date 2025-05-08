@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>SONG PAGE</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+   
+  
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+    
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height:600px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      padding-top: 20px;
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height:auto;} 
+    }
+    img{
+      width: 200px;
+      height:250px;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="/play">BREATH IT</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/play">Song page</a></li>
+        <li><a href="/playlist">Playlist</a></li>
+        <li><a href="/album">Albums</a></li>
+        <li><a href="/user.details">Profile</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> LOG OUT</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+  
+<div class="container-fluid text-center">    
+  <div class="row content">
+    <div class="col-sm-2 sidenav">
+      <p><button type="button" class="btn btn-dark" onclick="location.href='/playlist'">Add to playlist</button></p>
+      <p><a href="/playlist"><button type="button" class="btn btn-dark">view playlist</button></a></p>
+      <img src="/static/audios/{{Song.pfile}}" alt="">
+    </div>
+    <div class="col-sm-8 text-left"> 
+      <h1>{{Song.song_name}}</h1>
+      
+      <h2>lyrics</h2>
+      <p>{{Song.lyrics}}</p>
+      <hr>
+      {% if flag=='1' %}
+        <h1>This song is blacklisted</h1>
+      {% else %}
+        <audio controls>
+            <source src="{{ url_for('static', filename='audios/' + Song.filename) }}" type="audio/mpeg">
+            Your browser does not support the audio tag.
+          </audio>
+      {% endif %}
+      
+      <form  method="POST" action="/song/rate/{{Song.id}}">
+        <h3>Rate Song:</h3><div class="rate">
+          <input type="radio" id="star1" name="rate" value="1" />
+          <label for="star1" title="text">1 star</label>
+          <input type="radio" id="star2" name="rate" value="2" />
+          <label for="star2" title="text">2 stars</label>
+          <input type="radio" id="star3" name="rate" value="3" />
+          <label for="star3" title="text">3 stars</label>
+          <input type="radio" id="star4" name="rate" value="4" />
+          <label for="star4" title="text">4 stars</label>
+          <input type="radio" id="star5" name="rate" value="5" />
+          <label for="star5" title="text">5 stars</label>
+        </div>
+        <p>Comment:</p>
+        <textarea name="comment" id="comment" cols="60" rows="5"></textarea>
+        <input type="submit" value="Post">
+      </form>
+    </div>
+    <div class="col-sm-2 sidenav">
+      <div class="well">
+        <h3>Total ratings:</h3>
+        <h3>{{avg_rating}}</h3>
+      </div>
+      <div class="well">
+        <p>Comments:</p>
+        {% for comment in comments %}
+        <p>{{comment.user_id}}--{{comment.comment}}</p>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="container-fluid text-center">
+  <p>COPYRIGHT &#169 2023 BREATH IT MUSIC</p>
+</footer>
+
+</body>
+</html>

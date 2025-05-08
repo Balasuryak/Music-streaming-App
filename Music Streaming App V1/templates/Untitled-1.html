@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>welcome</title>
+  </head>
+  <body>
+    <h2>welcome {{User.username}},you are now logged in</h2>
+
+    <h3>for more info click<a href="/user.details">here</a></h3>
+  </body>
+</html>
+<h2>Your stored information</h2>
+    <h3>your password:{{User.password}}</h3>
+    
+    <ul>
+        {% for info in User.information %}
+        <h4><li>{{info.info_name}}--{{info.content}}</li></h4>
+        {% endfor %}
+    </ul>
+    <h5><a href="/Logout">Log out</a></h5>
+
+
+
+    <div class='master_play'>
+      <img src="/static/JKMxeHL-lion-wallpapers.jpg" alt="">
+      <h5 id="title">
+          On my way
+          <div class="subtitle">bakim chandra</div>
+      </h5>
+      <div class="icon">
+          <i class="bi bi-music-note-beamed"></i>
+          <i class="bi bi-skip-start-fill"></i>
+          <i class="bi bi-play-fill"></i>
+          <i class="bi bi-skip-end-fill"></i>
+      </div>
+      <span id="start_time">0:00</span>
+      <div class="bar">
+          <input type="range"  id="seek_time" min="0" max="100">
+          <div class="bar2" id="bar2"></div>
+          <div class="dot"></div>
+      </div>
+      <span id="start_time">59:00</span>
+      <div class="vol">
+          <i class="bi bi-volume-mute-fill" id="vol_icon"></i>
+          <input type="range" min="0" max="100" id="vol">
+          <i class="bi bi-volume-up-fill"></i>
+      </div>
+  </div>
+
+  COPYRIGHT © 2023 BREATH IT MUSIC

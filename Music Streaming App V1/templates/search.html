@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEARCH</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    
+    <style>
+        /* Remove the navbar's default rounded borders and increase the bottom margin */ 
+        .navbar {
+          margin-bottom: 50px;
+          border-radius: 0;
+          position: sticky;
+        }
+        
+        /* Remove the jumbotron's default bottom margin */ 
+         .jumbotron {
+          margin-bottom: 0;
+        }
+       
+        /* Add a gray background color and some padding to the footer */
+        footer {
+          background-color: #f2f2f2;
+          padding: 25px;
+        }
+        a{
+            cursor:pointer;
+        }
+        img{
+          height: 40px;;
+        }
+      </style>
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>                        
+            </button>
+            <a class="navbar-brand" href="/play">BREATH IT</a>
+          </div>
+          <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="#">Album</a></li>
+              <li><a href="/playlist">Playlist</a></li>
+              <li><a href="/user.details">Profile</a></li>
+              <!-- <li> 
+              <form class="form-inline">
+                  <input type="email" class="form-control" size="50" placeholder="search album">
+                  <button type="button" class="btn btn-danger">search</button>
+              </form></li> -->
+              
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              
+              <li><a href="/Logout"> LOG OUT</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <form method="POST" action="/search">
+        <h3>Search:</h3>
+        <div class="input-group">
+          <input type="text" name="searchitem" class="form-control" placeholder="Search" >
+          <div class="input-group-btn">
+            <button class="btn btn-success" type="submit">
+            <i class="glyphicon glyphicon-search"></i>Search
+          </button>
+          </div>
+        </div>
+      </form>
+    
+      <hr>
+      <div id="datatable">
+        <h3>Search in Songs:</h3>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Song name</th>
+              <th scope="col">Play song</th>
+              <th scope="col">genre</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for song in songs %}
+              <tr>
+                <td><img src="/static/audios/{{song.pfile}}" alt=""><br><a href="/song/{{song.id}}">{{song.song_name}}</a></td>
+                <td><audio controls>
+                  <source src="{{ url_for('static', filename='audios/' + song.filename) }}" type="audio/mpeg">
+                  Your browser does not support the audio tag.
+                </audio></td>
+                <td>{{song.genre}}</td>
+      
+
+              </tr>
+            {% endfor %}
+           
+          </tbody>
+        </table>
+        <hr>
+        <h3>Search in Albums:</h3>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Album name</th>
+              <th scope="col">Artist</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for album in albums %}
+            <tr>
+              <td><img src="/static/audios/{{album.pfile}}" alt=""><a href="/album/{{album.id}}">{{album.album_name}}</a></td>
+              <td>{{album.artist}}</td>
+            
+            </tr>
+            {% endfor %}
+            
+          </tbody>
+        </table>
+      </div>
+</body>
+</html>
+

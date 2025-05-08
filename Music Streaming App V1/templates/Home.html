@@ -1,0 +1,171 @@
+{% extends 'base.html'  %}
+
+
+{%  block title %}HOME{% endblock %}
+
+{% block body %}
+<main>
+    
+    <div class="menu_side">
+        <h1>Playlist</h1>
+
+        <div class="playlist">
+            <h4><i class="bi bi-music-note" onclick="location.href='/playlist'" >Playlist</i></h4>
+            <h4><i class="bi bi-music-note" onclick="location.href='/album'" >Albums</i></h4>
+            <!-- <h4><i class="bi bi-music-note"></i>Recommended</h4> -->
+        </div>
+        
+        <div class="menu_song">
+            {% for item in all %}
+                
+            <li class="songItem">
+                <span>{{item.id}}</span>
+                <img src="static/audios/{{item.pfile}}" alt="">
+                <h5>{{ item.song_name }}<br>
+                    <div class="subtitle">{{item.duration}}</div>
+                </h5>
+                <i class="bi bi-play-circle-fill" id="1"></i>
+            </li>
+                
+            {% endfor %}
+        </div>
+    </div>
+    
+    <div class='song_side'>
+        <nav>
+            <ul>
+                <li><i class="bi bi-person-circle" onclick="location.href='/user.details'"> PROFILE</i></li>
+                <li onclick="location.href='/playlist'" >MY PLAYLIST</li>
+                <li onclick="location.href='/album'">ALBUMS</li>
+                {% if c=='1' %}
+                    <li >BLACKLISTED</li>
+                {% elif creator_exist %}
+                    <li onclick="location.href='/upload'">UPLOAD</li>
+                {% else %}
+                    <li onclick="location.href='/creator'">CREATOR</li>
+                {% endif %}
+            </ul>
+            <div class="search" style="color:blue;">
+                <button type="button" class="btn btn-success" onclick="location.href='/search'"><i class="bi bi-search"></i>SEARCH</button>
+                <!-- <input type="text" placeholder="search......"> -->
+            </div>
+            <div>
+                <i class="bi bi-box-arrow-right"><a href="/Logout">LOGOUT</a></i>
+            </div>
+        </nav>
+        
+        <div class="recently_added">
+            <div class="h4">
+                <h4>Recently added</h4>
+                <div class="button_s">
+                    <i class="bi bi-arrow-left-short"></i>
+                    <i class="bi bi-arrow-right-short"></i>
+                </div>
+            </div>
+            <div class="song_card">
+                {% for item in Song %}
+                    <li class="songItem">
+                        <a href="/song/{{item.id}}">
+                        <div class="img_play">
+                            <img src="static/audios/{{item.pfile}}" alt="">
+                            <i class="bi bi-play-circle-fill" id="1"></i>
+                        </div></a>
+                        <h5>{{ item.song_name }}<br>
+                            <div class="subtitle">{{item.duration}}</div>
+                        </h5>
+                    </li>
+                {% endfor %}
+            </div>
+        </div>
+        
+        <div class="recently_added">
+            <div class="h4">
+                <h4>Favorites</h4>
+                <div class="button_s">
+                    <i class="bi bi-arrow-left-short"></i>
+                    <i class="bi bi-arrow-right-short"></i>
+                </div>
+            </div>
+            <div class="song_card">
+                {% for item in fav %}
+                    
+                        <li class="songItem">
+                            <a href="/song/{{item.id}}">
+                            <div class="img_play">
+                                <img src="static/audios/{{item.pfile}}" alt="">
+                                <i class="bi bi-play-circle-fill" id="1"></i>
+                            </div></a>
+                            <h5>{{ item.song_name }}<br>
+                                <div class="subtitle">{{item.duration}}</div>
+                            </h5>
+                        </li>
+                    
+                {% endfor %}
+            </div>
+        </div>
+        
+        <div class="recently_added">
+            <div class="h4">
+                <h4>Albums</h4>
+                <div class="button_s">
+                    <i class="bi bi-arrow-left-short"></i>
+                    <i class="bi bi-arrow-right-short"></i>
+                </div>
+            </div>
+            <div class="song_card">
+                {% for item in Album %}
+                    <li class="songItem">
+                        <a href="/album/{{item.id}}">
+                        <div class="img_play">
+                            <img src="/static/audios//{{item.pfile}}" alt="">
+                            <i class="bi bi-play-circle-fill" id="1" ></i>
+                        </div></a>
+                        <h5>{{ item.album_name }}<br>
+                            <div class="subtitle">{{item.artist}}</div>
+                        </h5>
+                    </li>
+                {% endfor %}
+            </div>
+        </div>
+        
+        <!-- <div class="most_liked">
+            <div class="h4">
+                <h4>Recently added</h4>
+                <div class="button_s">
+                    <i class="bi bi-arrow-left-short"></i>
+                    <i class="bi bi-arrow-right-short"></i>
+            </div>
+        </div> -->
+    </div>
+    
+    
+    
+    <!-- <div class='master_play'>
+        <img src="/static/JKMxeHL-lion-wallpapers.jpg" alt="">
+        <h5 id="title">
+            On my way
+            <div class="subtitle">bakim chandra</div>
+        </h5>
+        <div class="icon">
+            <i class="bi bi-music-note-beamed"></i>
+            <i class="bi bi-skip-start-fill"></i>
+            <i class="bi bi-play-fill"></i>
+            <i class="bi bi-skip-end-fill"></i>
+        </div>
+        <span id="start_time">0:00</span>
+        <div class="bar">
+            <input type="range"  id="seek_time" min="0" max="100">
+            <div class="bar2" id="bar2"></div>
+            <div class="dot"></div>
+        </div>
+        <span id="start_time">59:00</span>
+        <div class="vol">
+            <i class="bi bi-volume-mute-fill" id="vol_icon"></i>
+            <input type="range" min="0" max="100" id="vol">
+            <i class="bi bi-volume-up-fill"></i>
+            
+        </div> -->
+    </div>
+</main>
+{% endblock %}
+

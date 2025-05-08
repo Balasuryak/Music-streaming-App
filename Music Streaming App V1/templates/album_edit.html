@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>EDIT ALBUM</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+  <style>
+    /* Remove the navbar's default rounded borders and increase the bottom margin */ 
+    .navbar {
+      margin-bottom: 3px;
+      border-radius: 0;
+      position: sticky;
+    }
+    
+    /* Remove the jumbotron's default bottom margin */ 
+     .jumbotron {
+      margin-bottom: 0;
+    }
+   
+    /* Add a gray background color and some padding to the footer */
+    footer {
+      background-color: #f2f2f2;
+      padding: 20px;
+    }
+    a{
+        cursor:pointer;
+    }
+    * {box-sizing: border-box}
+
+/* Add padding to containers */
+.container {
+  padding: 16px;
+}
+
+/* Full-width input fields */
+input[type=text], input[type=name] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Overwrite default styles of hr */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* Set a style for the submit/register button */
+.registerbtn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.registerbtn:hover {
+  opacity:1;
+}
+
+/* Add a blue text color to links */
+a {
+  color: dodgerblue;
+}
+
+/* Set a grey background color and center the text of the "sign in" section */
+.signin {
+  background-color: #f1f1f1;
+  text-align: center;
+}
+  </style>
+</head>
+<body>
+
+
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="/play">BREATH IT</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="/play">Home</a></li>
+        <li class="active"><a href="/album">Album</a></li>
+        <li><a href="/playlist">Playlist</a></li>
+        <li><a href="/user.details">Profile</a></li>
+        <!-- <li> 
+        <form class="form-inline">
+            <input type="email" class="form-control" size="50" placeholder="search album">
+            <button type="button" class="btn btn-danger">search</button>
+        </form></li> -->
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+        <li><a href="/Logout"> LOG OUT</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container">    
+    <div class="row">
+        <form method="POST" action="/album/edit" enctype="multipart/form-data">
+        <div class="container">
+          <h1>CREATE ALBUM</h1>
+          
+          <hr>
+          <h2>Add Photo to Album</h2>
+          <input type="file" name="file" accept=".png">
+          <hr>
+      
+          <label for="albumname"><b>Album name</b></label>
+          <input type="text" placeholder="Enter Album name" name="albumname" id="albumname" required>
+      
+          <label for="artist"><b>Artist</b></label>
+          <input type="text" placeholder="Enter Artist" name="artist" id="artist" required>
+            <hr>
+      
+          
+          <button type="submit" class="registerbtn">CREATE ALBUM</button>
+        </div>
+      
+        
+      </form>
+    
+    
+  </div>
+  <button type="button" class="btn btn-danger" onclick="location.href='/album/delete'">EDIT/DELETE EXISTING ALBUM</button>
+</div><br><br>
+
+
+
+</body>
+</html>

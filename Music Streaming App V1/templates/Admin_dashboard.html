@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>ADMIN DASHBOARD</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+    /* Add a gray background color and some padding to the footer */
+    footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+    }
+
+    .carousel-inner img {
+      width: 100%; /* Set width to 100% */
+      min-height: 200px;
+    }
+
+    /* Hide the carousel text when the screen is less than 600 pixels wide */
+    @media (max-width: 600px) {
+      .carousel-caption {
+        display: none; 
+      }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">BREATH IT</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+       
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/"><span class="glyphicon glyphicon-log-in"></span> LOGOUT</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+<div class="row">
+  <div class="col-sm-8">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      
+
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner" role="listbox">
+        <div class="item active">
+          <img src="/static/charts/chart.png" alt="Image">
+          <div class="carousel-caption">
+            
+          </div>      
+        </div>
+      </div>
+
+      <!-- Left and right controls -->
+      
+      
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="well">
+      <p>Total Users        :  {{tu}}</p>
+    </div>
+    <div class="well">
+       <p>Total Creators   :   {{tc}}</p>
+    </div>
+    <div class="well">
+       <p>Total Songs   :   {{numsong}}</p>
+    </div>
+    <div class="well">
+        <p>Total Albums    :   {{ta}}</p>
+     </div>
+  </div>
+</div>
+<hr>
+</div>
+
+<div class="container text-center">    
+  <h3>CREATORS</h3>
+  <br>
+  <div class="row">
+    {% for creator in creators%}
+    <div class="col-sm-3">
+        <div class="well">
+         <p>{{creator.username}}</p>
+        <form action="/creator/flagremove/{{creator.id}}" method="POST"><button type="submit" class="btn btn-primary">Whitelist</button></form>
+        <form action="/creator/flag/{{creator.id}}" method="POST"><button type="submit" class="btn btn-danger">Blacklist</button></form>
+        </div>
+      </div>
+    {% endfor %}
+      
+    
+    
+ 
+  </div>
+  <hr>
+</div>
+
+<div class="container text-center">    
+  <h3>SONGS</h3>
+  <br>
+  <div class="row"> 
+    {% for song in songs %}
+    
+    <div class="col-sm-2"> 
+      <img src="static/audios/{{song.pfile}}" class="img-responsive" style="width:100%" alt="Image">
+      <p>{{song.song_name}}</p>
+      <form action="/song/flag/{{song.id}}" method="POST"><button type="submit" class="btn btn-primary">Flag</button></form>
+      <form action="/song/admin/delete/{{song.id}}" method="POST"><button type="submit" class="btn btn-danger">Remove</button></form>
+    </div>  
+    {% endfor %}
+  </div>
+</div><br>
+
+<footer class="container-fluid text-center">
+  <p>COPYRIGHT © 2023 BREATH IT MUSIC</p>
+</footer>
+
+</body>
+</html>

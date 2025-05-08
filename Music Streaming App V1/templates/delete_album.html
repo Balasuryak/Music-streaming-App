@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>DELETE ALBUM</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <style>
+    img{
+        height: 100px;
+        padding-left: 50px;
+        
+    }
+  </style>
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>                        
+            </button>
+            <a class="navbar-brand" href="/play">BREATH IT</a>
+          </div>
+          <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+              <li ><a href="#">Song page</a></li>
+              <li><a href="/playlist">Playlist</a></li>
+              <li class="active"><a href="/album">Albums</a></li>
+              <li><a href="/user.details">Profile</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> LOG OUT</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+        
+
+<div class="container">
+  <h2>Album Uploaded</h2>
+  <p>Edit Albums</p>            
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Album Picture</th>
+        <th>Album Name</th>
+        <th>Album Artist</th>
+        <th>Edit</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for item in album %}
+      <tr>
+        <td><img src="/static/audios/{{item.pfile}}" alt=""></td>
+        <td>{{item.album_name}}</td>
+        <td>{{item.artist}}</td>
+        <td><button type="button" class="btn btn-info" onclick="location.href='/album/edit/{{item.id}}'">EDIT ALBUM</button><hr>
+        <form action="/album/delete/{{item.id}}" method="POST"><button type="submit" class="btn btn-danger" >DELETE ALBUM</button></form></td>
+      </tr>
+    {% endfor%}
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>

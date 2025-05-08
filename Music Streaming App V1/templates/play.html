@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Upload Songs{% endblock %}
+
+
+
+{% block body %}
+<h1>Play Songs</h1>
+  <ul>
+    {% for song in songs %}
+      <li>
+        {{ song.filename }} <br>
+        <audio controls>
+          <source src="{{ url_for('static', filename='audios/' + song.filename) }}" type="audio/mpeg">
+          Your browser does not support the audio tag.
+        </audio>
+        <br>
+        <br>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends 'base.html'  %}
+
+
+{%  block title %}Adminstrator Login form {% endblock %}
+
+{% block body %}
+<form action="/sign_up" method="POST" enctype="multipart/form-data">
+    <h1>SIGN UP FORM</h1><hr>
+    
+    <hr>
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" class="form-control" id="name"
+            placeholder="Enter Name" name="name" required>
+    </div>
+    <div class="form-group">
+        <label for="username">User Name:</label>
+        <input type="text" class="form-control" id="username"
+            placeholder="Enter User Name" name="setuser" required>
+    </div>
+    <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" class="form-control" id="password"
+            placeholder="Enter password" name="setpass" required>
+    </div>
+    <div class="form-group">
+        <label for="confirmpass">Confirm password:</label>
+        <input type="password" class="form-control" id="password"
+            placeholder="Confirm password" name="confirmpassword" required>
+    </div>
+    <div class="form-group">
+        <label for="ph">Phone Number</label>
+        <input type="password" class="form-control" id="ph"
+            placeholder="Phone Number" name="ph">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="mail">
+        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+      </div>
+      
+    <button type="submit" class="btn bg-success">
+        Sign up
+    </button>
+</form>
+<!-- <form action="/sign_up" method="POST">
+    <div align="center">
+        <label for="user">Username:</label>
+        <input type="text"  id="user" name="setuser">
+    </div>
+    
+    <div align="center">
+        <label for="pass">Set password:</label>
+        <input type="password"  id="pass" name="setpass">
+    </div>
+
+    <div align="center">
+        <label for="pass">Confirm Password:</label>
+        <input type="password"  id="pass" name="confirmpass">
+    </div>
+    
+    <div align="center">
+        <input type="submit" value="SIGN UP">
+    </div>
+</form> -->
+
+
+
+{% endblock %}
