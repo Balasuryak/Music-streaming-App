@@ -1,0 +1,188 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>UPLOAD SONG</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+  <style> 
+    .navbar {
+      margin-bottom: 3px;
+      border-radius: 0;
+      position: sticky;
+    }
+     
+     .jumbotron {
+      margin-bottom: 0;
+    }
+   
+    footer {
+      background-color: #f2f2f2;
+      padding: 20px;
+    }
+    a{
+        cursor:pointer;
+    }
+    * {box-sizing: border-box}
+
+.container {
+  padding: 16px;
+}
+
+input[type=text], input[type=name] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+.registerbtn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.registerbtn:hover {
+  opacity:1;
+}
+
+
+a {
+  color: dodgerblue;
+}
+
+
+.signin {
+  background-color: #f1f1f1;
+  text-align: center;
+}
+  </style>
+</head>
+<body>
+
+
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="/">BREATH IT</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="/">Home</a></li>
+        <li><a href="/#/albums">Album</a></li>
+        <li class="active"><a href="/upload">Upload song</a></li>
+        <li><a href="/#/playlist">Playlist</a></li>
+        <!-- <li> 
+        <form class="form-inline">
+            <input type="email" class="form-control" size="50" placeholder="search album">
+            <button type="button" class="btn btn-danger">search</button>
+        </form></li> -->
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+        <li><a href="/user.details">Profile</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container">    
+    <div class="row">
+      <form method="POST" action="/upload/{{id}}" enctype="multipart/form-data">
+        <h1>Upload Songs</h1>
+        <hr>
+        <p>Choose Song:</p>
+        <input type="file" name="file" accept=".mp3" required>
+        <hr>
+        <hr>
+        <p>Choose display picture:</p>
+        <input type="file" name="pfile" accept=".png" required>
+        <hr>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="Song_name">Song Name</label>
+            <input type="text" class="form-control" id="Song_name" name="Songname" placeholder="Song Name" required>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="duration">Song Duration</label>
+            <input type="text" class="form-control" id="duration" name="duration" placeholder="Song Duration" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="lyrics">Lyrics</label>
+          <input type="text" class="form-control" id="lyrics" name="lyrics" placeholder="lyricsss..." required>
+        </div>
+        <div class="form-group">
+          <label for="genre">Genre</label>
+          <input type="text" class="form-control" id="genre" name="genre" placeholder="Type of the song.." required>
+        </div>
+        <div class="form-row">
+          
+          <div class="form-group col-md-4">
+            <hr>
+            <label for="album">Album</label>
+            
+            
+            <select id="album"  name="album" class="form-control">
+              <option selected>Choose...</option>
+              {% for item in Album %}
+                <option>{{item.album_name}}</option>
+              {% endfor %}
+            </select>
+            <br>
+            <button type="button" class="btn btn-light" onclick="location.href='/album/edit'">Create New Album</button>
+          <br><br><hr>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">upload</button>
+        </div>
+        
+        
+        <!-- <input type="submit" value="Upload"> -->
+        
+      </form>
+    
+  </div>
+</div><br><br>
+
+
+
+</body>
+</html>
+
+    
+      
+    
+    
+    
+    
+  
